@@ -1,6 +1,7 @@
 import { Grid, } from '@mui/material';
 
 import ShowItems from './ShowItems';
+import ShowTotal from './ShowTotal';
 
 const Checkout = ({cart, }) => {
 
@@ -17,7 +18,7 @@ const Checkout = ({cart, }) => {
         </Grid>
 
         <Grid item xs={3}>
-          Baii
+          <ShowTotal cart={cart}/>
         </Grid>
       </Grid>
     </div>

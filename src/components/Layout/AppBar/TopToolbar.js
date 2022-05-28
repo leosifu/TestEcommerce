@@ -1,35 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 
-import { Box, Toolbar, TextField, Stack, InputAdornment, } from '@mui/material';
+import { Box, Toolbar, Stack, InputAdornment, } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { styled } from '@mui/material/styles';
 
 import Logo from '../../../assets/images/Yu-Gi-Oh2001.png';
 
 import ShowCart from './ShowCart';
-
-const CssTextField = styled(TextField)({
-  '& label.Mui-focused': {
-    color: '#EABE3F',
-  },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: '#EABE3F',
-  },
-  '& .MuiOutlinedInput-root': {
-    color: '#EABE3F',
-    '& fieldset': {
-      borderColor: '#EABE3F',
-    },
-    '&:hover fieldset': {
-      borderColor: '#EABE3F',
-      color: '#EABE3F'
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: '#EABE3F',
-      color: '#EABE3F'
-    },
-  },
-});
+import StyledTextField from '../../../Utils/StyledTextField';
 
 const TopToolbar = ({cart, }) => {
 
@@ -61,7 +38,7 @@ const TopToolbar = ({cart, }) => {
         />
       </Stack>
 
-      <CssTextField
+      <StyledTextField
         id="filled-search"
         label="Buscar carta..."
         type="search"

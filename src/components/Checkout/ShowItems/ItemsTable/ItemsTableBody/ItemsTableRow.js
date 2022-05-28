@@ -4,6 +4,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import { useDispatch, } from 'react-redux';
 import { addItemToCart, deleteItemFromCart, deleteCompletelyItemFromCart, } from '../../../../../store/slices/cartSlice';
+import { openSnackbar, } from '../../../../../store/slices/snackBarSlice';
 
 const ItemsTableRow = ({item, }) => {
 
@@ -14,6 +15,11 @@ const ItemsTableRow = ({item, }) => {
       item: item,
       price: item.card_prices[0].ebay_price
     }))
+    dispatch(openSnackbar({
+      open: true,
+      severity: 'success',
+      text: `Se agregó ${item.name}`
+    }))
   }
 
   const deleteItem = () => {
@@ -21,12 +27,24 @@ const ItemsTableRow = ({item, }) => {
       id: item.id,
       price: item.card_prices[0].ebay_price
     }))
+    dispatch(openSnackbar({
+      open: true,
+      severity: 'error',
+      text: `Se eliminó ${item.name}`
+    }))
   }
 
-  const deleteCompletelyItem = () => dispatch(deleteCompletelyItemFromCart({
-    id: item.id,
-    price: item.card_prices[0].ebay_price
-  }))
+  const deleteCompletelyItem = () => {
+    dispatch(deleteCompletelyItemFromCart({
+      id: item.id,
+      price: item.card_prices[0].ebay_price
+    }))
+    dispatch(openSnackbar({
+      open: true,
+      severity: 'error',
+      text: `Se eliminaron todos los ${item.name}`
+    }))
+  }
 
   return(
     <TableRow hover role="checkbox" tabIndex={-1} key={item.code}>
@@ -57,6 +75,7 @@ const ItemsTableRow = ({item, }) => {
       </TableCell>
       <TableCell>
         <Button
+          color="error"
           onClick={deleteCompletelyItem}
         >
           Borrar

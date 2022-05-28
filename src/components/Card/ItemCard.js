@@ -1,7 +1,8 @@
-import {Card as CardMUI, CardActions, CardContent, CardMedia, Button, Typography, Grid, } from '@mui/material';
+import {Card as CardMUI, CardActions, CardContent, CardMedia, Typography, Grid, } from '@mui/material';
 
 import { useDispatch, } from 'react-redux';
 import { addItemToCart, } from '../../store/slices/cartSlice';
+import { openSnackbar, } from '../../store/slices/snackBarSlice';
 
 import GeneralButton from '../../Utils/GeneralButton';
 
@@ -15,6 +16,11 @@ const Card = ({card, }) => {
     dispatch(addItemToCart({
       item: card,
       price: cardPrice
+    }))
+    dispatch(openSnackbar({
+      open: true,
+      severity: 'success',
+      text: `Se agregó ${card.name}`
     }))
   }
 
@@ -39,13 +45,14 @@ const Card = ({card, }) => {
             {`$${cardPrice}` || '-'}
           </Typography>
         </CardContent>
-        <CardActions>
-          <GeneralButton
-            disabled={!cardPrice}
-            size="small"
-            onClick={addItem}
-            title={cardPrice ? 'Agregar al carrito' : 'Agotado'}
-          />
+        <CardActions sx={{paddingLeft: 2}}>
+            <GeneralButton
+              disabled={!cardPrice}
+              size="small"
+              onClick={addItem}
+              title={cardPrice ? 'Agregar al carrito' : 'Agotado'}
+            />
+
         </CardActions>
       </CardMUI>
     </Grid>

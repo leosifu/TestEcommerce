@@ -2,10 +2,11 @@ import { useState, } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { IconButton, Badge, Drawer, Box, Divider, Typography, Paper, Card, Grid, Button, } from '@mui/material';
+import { IconButton, Badge, Drawer, Box, Divider, Typography, Card, Grid, } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import CartItem from './CartItem';
+import GeneralButton from '../../../../Utils/GeneralButton';
 
 const ShowCart = ({cart, }) => {
 
@@ -56,7 +57,7 @@ const ShowCart = ({cart, }) => {
           onKeyDown={toggleDrawer(false)}
           style={{paddingTop: 10, paddingLeft: 5}}
         >
-          <Typography variant="h5" gutterBottom component="div">
+          <Typography variant="h6" gutterBottom component="div">
             {`Carro de compras (${items.length})`}
           </Typography>
           {
@@ -75,8 +76,8 @@ const ShowCart = ({cart, }) => {
                   </>
                 )
               }
-              <Card sx={{ position: 'sticky', bottom: 0, width: 280, flexGrow: 1, minHeight: 100, border: 'none', boxShadow: 'none', padding: '5px 0px 5px 0px', }}>
-                <Divider />
+              <Card sx={{ position: 'sticky', bottom: 0, width: 280, flexGrow: 1, minHeight: 150, border: 'none', boxShadow: 'none', padding: '0px 20px 5px 0px', }}>
+                <Divider sx={{marginBottom: 3}}/>
                 <Grid
                   container
                   justifyContent="space-around"
@@ -93,12 +94,10 @@ const ShowCart = ({cart, }) => {
                       </Typography>
                   </Grid>
                 </Grid>
-                <Button
+                <GeneralButton
                   onClick={goToCheckout}
-                  variant="contained"
-                >
-                  Ir a Checkout
-                </Button>
+                  title={'Ir a Checkout'}
+                />
               </Card>
             </>
             :

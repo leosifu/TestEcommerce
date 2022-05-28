@@ -1,9 +1,12 @@
-import {Card, CardContent, CardMedia, Typography, Grid, IconButton, } from '@mui/material';
+import {Card, CardActions, CardContent, CardMedia, Typography, Grid, IconButton, Button, } from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import { useDispatch, } from 'react-redux';
-import { addItemToCart, deleteItemFromCart, } from '../../../../store/slices/cartSlice';
+import { addItemToCart, deleteItemFromCart, deleteCompletelyItemFromCart, } from '../../../../store/slices/cartSlice';
+import { openSnackbar, } from '../../../../store/slices/snackBarSlice';
+
+import StyledTextField from '../../../../Utils/StyledTextField';
 
 const CartItem = ({item, }) => {
 
@@ -14,6 +17,11 @@ const CartItem = ({item, }) => {
       item: item,
       price: item.card_prices[0].ebay_price
     }))
+    dispatch(openSnackbar({
+      open: true,
+      severity: 'success',
+      text: `Se agregó ${item.name}`
+    }))
   }
 
   const deleteItem = () => {
@@ -21,10 +29,27 @@ const CartItem = ({item, }) => {
       id: item.id,
       price: item.card_prices[0].ebay_price
     }))
+    dispatch(openSnackbar({
+      open: true,
+      severity: 'error',
+      text: `Se eliminó ${item.name}`
+    }))
+  }
+
+  const deleteCompletelyItem = () => {
+    dispatch(deleteCompletelyItemFromCart({
+      id: item.id,
+      price: item.card_prices[0].ebay_price
+    }))
+    dispatch(openSnackbar({
+      open: true,
+      severity: 'error',
+      text: `Se eliminaron todos los ${item.name}`
+    }))
   }
 
   return (
-    <Card style={{margin: 20, width: 240, border: 'none', boxShadow: 'none'}}>
+    <Card style={{margin: 5, width: 240, border: 'none', boxShadow: 'none'}}>
       <Grid container>
         <Grid item xs={4}>
           <CardMedia
@@ -34,7 +59,9 @@ const CartItem = ({item, }) => {
         </Grid>
 
         <Grid item xs={8}>
-          <CardContent>
+          <CardContent
+            sx={{padding: '0px 0px 0px 15px'}}
+          >
             <Typography variant="subtitle2" gutterBottom component="div" style={{fontWeight: 'bold'}}>
               {item.name}
             </Typography>
@@ -46,25 +73,47 @@ const CartItem = ({item, }) => {
                 {`${item.itemTotalPrice}`}
               </Typography>
             </Grid>
+            <Button
+              color="error"
+              size="small"
+              onClick={deleteCompletelyItem}
+            >
+              Eliminar
+            </Button>
           </CardContent>
         </Grid>
-        <CardContent>
-          <Grid container>
+        <CardActions>
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-around"
+          alignItems="center"
+        >
+          <Grid item xs={3}>
             <IconButton
               onClick={deleteItem}
             >
               <RemoveCircleIcon />
             </IconButton>
-            <Typography variant="body2" gutterBottom component="div" >
-              {`${item.quantity}`}
-            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <StyledTextField
+              readOnly
+              value={item.quantity}
+              size="small"
+              disabled
+            />
+          </Grid>
+          <Grid item xs={3}>
             <IconButton
               onClick={addItem}
             >
               <AddCircleIcon />
             </IconButton>
           </Grid>
-        </CardContent>
+
+        </Grid>
+        </CardActions>
       </Grid>
     </Card>
   );
