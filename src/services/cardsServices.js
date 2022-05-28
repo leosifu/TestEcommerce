@@ -3,7 +3,6 @@ import axios from 'axios';
 
 export const getCardsService = async () => {
   const {data} = await clientAxios().get('/cardinfo.php?num=5&offset=0');
-  console.log(data);
   return data;
 }
 

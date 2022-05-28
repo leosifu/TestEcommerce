@@ -4,9 +4,10 @@ import { Provider, } from 'react-redux';
 
 import store from './store';
 
-import App from './App';
 import Layout from './components/Layout';
+
 import Home from './components/Home';
+import CheckoutContainer from './containers/CheckoutContainer';
 
 const AppRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const AppRoutes = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />}/>
+          <Route path="/checkout" element={<CheckoutContainer />}/>
         </Routes>
       </Layout>
     </Provider>

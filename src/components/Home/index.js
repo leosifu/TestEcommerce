@@ -1,5 +1,7 @@
 import {useState, useEffect, } from 'react';
 
+import { Container } from '@mui/material';
+
 import Carousel from './Carousel';
 
 import {getCommonCardsService, getMainPageMonsterCardsService, getMainPageSpellCardsService, getMainPageTrapCardsService, } from '../../services/cardsServices';
@@ -56,7 +58,9 @@ const Home = () => {
   }
 
   return (
-    <>
+    <div
+      style={{ textAlign: 'center' }}
+    >
       <h2>
         Las más populares
       </h2>
@@ -73,7 +77,7 @@ const Home = () => {
         Las mejores cartas trampa
       </h2>
       <Carousel cards={trapCards} />
-    </>
+    </div>
   )
 }
 

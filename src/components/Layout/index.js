@@ -1,9 +1,9 @@
-import AppBar from './AppBar';
+import AppBarContainer from '../../containers/AppBarContainer';
 
 const Layout = ({children, }) => {
   return (
     <>
-      <AppBar />
+      <AppBarContainer />
       {children}
     </>
   )

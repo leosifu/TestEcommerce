@@ -1,7 +1,9 @@
-import {Card, CardActions, CardContent, CardMedia, Button, Typography, Grid, } from '@mui/material';
+import {Card, CardContent, CardMedia, Typography, Grid, IconButton, } from '@mui/material';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import { useDispatch, } from 'react-redux';
-import { addItemToCart, deleteItemFromCart, } from '../../../store/slices/cartSlice';
+import { addItemToCart, deleteItemFromCart, } from '../../../../store/slices/cartSlice';
 
 const CartItem = ({item, }) => {
 
@@ -48,19 +50,19 @@ const CartItem = ({item, }) => {
         </Grid>
         <CardContent>
           <Grid container>
-            <Button
+            <IconButton
               onClick={deleteItem}
             >
-              -
-            </Button>
+              <RemoveCircleIcon />
+            </IconButton>
             <Typography variant="body2" gutterBottom component="div" >
               {`${item.quantity}`}
             </Typography>
-            <Button
+            <IconButton
               onClick={addItem}
             >
-              +
-            </Button>
+              <AddCircleIcon />
+            </IconButton>
           </Grid>
         </CardContent>
       </Grid>
