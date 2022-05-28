@@ -83,36 +83,36 @@ const CartItem = ({item, }) => {
           </CardContent>
         </Grid>
         <CardActions>
-        <Grid
-          container
-          direction="row"
-          justifyContent="space-around"
-          alignItems="center"
-        >
-          <Grid item xs={3}>
-            <IconButton
-              onClick={deleteItem}
-            >
-              <RemoveCircleIcon />
-            </IconButton>
-          </Grid>
-          <Grid item xs={6}>
-            <StyledTextField
-              readOnly
-              value={item.quantity}
-              size="small"
-              disabled
-            />
-          </Grid>
-          <Grid item xs={3}>
-            <IconButton
-              onClick={addItem}
-            >
-              <AddCircleIcon />
-            </IconButton>
-          </Grid>
+          <Grid
+            container
+            direction="row"
+            justifyContent="space-around"
+            alignItems="center"
+          >
+            <Grid item xs={3}>
+              <IconButton
+                onClick={deleteItem}
+              >
+                <RemoveCircleIcon />
+              </IconButton>
+            </Grid>
+            <Grid item xs={6}>
+              <StyledTextField
+                readOnly
+                value={item.quantity}
+                size="small"
+                disabled
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <IconButton
+                onClick={addItem}
+              >
+                <AddCircleIcon />
+              </IconButton>
+            </Grid>
 
-        </Grid>
+          </Grid>
         </CardActions>
       </Grid>
     </Card>

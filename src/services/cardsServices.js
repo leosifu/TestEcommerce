@@ -36,3 +36,7 @@ export const getMainPageTrapCardsService = async () => {
   const {data} = await clientAxios().get('/cardinfo.php?type=trap%20card&num=10&offset=0');
   return data;
 }
+
+export const getCardByNameService = async (cardName) => {
+  return clientAxios().get(`/cardinfo.php?name=${cardName}`);
+}

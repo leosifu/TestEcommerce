@@ -1,5 +1,7 @@
 import {Card as CardMUI, CardActions, CardContent, CardMedia, Typography, Grid, } from '@mui/material';
 
+import { useNavigate } from 'react-router-dom';
+
 import { useDispatch, } from 'react-redux';
 import { addItemToCart, } from '../../store/slices/cartSlice';
 import { openSnackbar, } from '../../store/slices/snackBarSlice';
@@ -7,6 +9,8 @@ import { openSnackbar, } from '../../store/slices/snackBarSlice';
 import GeneralButton from '../../Utils/GeneralButton';
 
 const Card = ({card, }) => {
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -24,12 +28,15 @@ const Card = ({card, }) => {
     }))
   }
 
+  const goToCardDetails = () => navigate(`/card?name=${card.name}`);
+
   return (
     <Grid item xs={3}>
       <CardMUI style={{margin: 20, width: 210}}>
         <CardMedia
           image={card.card_images[0].image_url}
-          style={{width: 210, height: 315}}
+          style={{width: 210, height: 315, cursor: 'pointer'}}
+          onClick={goToCardDetails}
         />
         <CardContent>
           <Typography gutterBottom component="div" className="limitText" style={{ opacity: 0.6, fontSize: 14 }}>
@@ -38,7 +45,7 @@ const Card = ({card, }) => {
           <Typography gutterBottom component="div" className="limitText" style={{ opacity: 0.4, fontSize: 12 }}>
             {card.race}
           </Typography>
-          <Typography gutterBottom variant="body1" component="div" className="limitText" style={{ fontWeight: 'bold' }}>
+          <Typography gutterBottom variant="body1" component="div" className="limitText" style={{ fontWeight: 'bold', cursor: 'pointer' }} onClick={goToCardDetails}>
             {card.name}
           </Typography>
           <Typography gutterBottom variant="h6" component="div" className="limitText" style={{ fontWeight: 'bold' }}>

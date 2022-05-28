@@ -37,7 +37,7 @@ const ShowCart = ({cart, }) => {
     <>
       <IconButton onClick={handleClick}>
         <Badge
-          badgeContent={items.reduce((total, item) => total + item.quantity, 0)}
+          badgeContent={items.reduce((total, item) => total + parseInt(item.quantity), 0)}
           color="error"
         >
           <ShoppingCartIcon

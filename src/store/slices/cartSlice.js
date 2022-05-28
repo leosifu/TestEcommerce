@@ -72,6 +72,39 @@ export const cartSlice = createSlice({
       localStorage.setItem('cart', JSON.stringify(cartState));
 
     },
+    addAnAmountOfItemsToCart: (state, action) => {
+      let checkItemExistsInCart = state.items.findIndex(item => item.id === action.payload.item.id);
+      let itemPrice = parseFloat(parseFloat(action.payload.price) * action.payload.amount).toFixed(2);
+
+      const copyStateItems = [...state.items];
+
+      if (checkItemExistsInCart > -1) {
+
+        const findItem = copyStateItems[checkItemExistsInCart];
+        copyStateItems[checkItemExistsInCart] = {
+          ...findItem,
+          quantity: parseInt(findItem.quantity) + parseInt(action.payload.amount),
+          itemTotalPrice: parseFloat(parseFloat(findItem.itemTotalPrice) + parseFloat(itemPrice)).toFixed(2)
+        }
+      }
+      else {
+        copyStateItems.push({
+          ...action.payload.item,
+          quantity: action.payload.amount,
+          itemTotalPrice: itemPrice
+        });
+      }
+
+      state.items = [...copyStateItems];
+      let newTotalPrice = parseFloat(parseFloat(state.totalPrice) + parseFloat(itemPrice)).toFixed(2);
+      state.totalPrice = newTotalPrice;
+      const cartState = {
+        items: copyStateItems,
+        totalPrice: newTotalPrice,
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cartState));
+    },
     deleteCompletelyItemFromCart: (state, action) => {
       let itemIndex = state.items.findIndex(item => item.id === action.payload.id);
       let itemPrice = parseFloat(action.payload.price);
@@ -98,6 +131,6 @@ export const cartSlice = createSlice({
   }
 })
 
-export const {addItemToCart, deleteItemFromCart, deleteCompletelyItemFromCart, } = cartSlice.actions;
+export const {addItemToCart, deleteItemFromCart, deleteCompletelyItemFromCart, addAnAmountOfItemsToCart, } = cartSlice.actions;
 
 export default cartSlice.reducer;
