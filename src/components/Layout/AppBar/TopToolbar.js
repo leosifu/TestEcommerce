@@ -1,3 +1,5 @@
+import { useState, } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import { Box, Toolbar, Stack, InputAdornment, } from '@mui/material';
@@ -12,7 +14,19 @@ const TopToolbar = ({cart, }) => {
 
   const navigate = useNavigate();
 
+  const [search, setSearch] = useState('');
+
+  const handleChange = (e) => setSearch(e.target.value);
+
   const goToHome = () => navigate('/');
+
+  const goToCardDetails = () => navigate(`/card?name=${search}`);
+
+  const handleKeypress = async (e) => {
+    if (e.keyCode === 13) {
+      goToCardDetails();
+    }
+  };
 
   return (
     <Toolbar
@@ -20,6 +34,7 @@ const TopToolbar = ({cart, }) => {
         justifyContent: "space-between",
         margin: '0px 5% 0px 5%'
       }}
+      onKeyDown={handleKeypress}
     >
 
       <Stack
@@ -44,9 +59,15 @@ const TopToolbar = ({cart, }) => {
         type="search"
         sx={{ marginLeft: '-10%', width: '40%' }}
         size='small'
+        value={search}
+        onChange={handleChange}
         InputProps={{
           endAdornment: (
-            <InputAdornment position="end" sx={{ cursor: 'pointer' }}>
+            <InputAdornment
+              position="end"
+              sx={{ cursor: 'pointer' }}
+              onClick={() => goToCardDetails()}
+            >
               <SearchIcon
                 sx={{ color: '#EABE3F' }}
               />

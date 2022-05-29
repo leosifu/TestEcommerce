@@ -1,7 +1,5 @@
 import {useState, useEffect, } from 'react';
 
-import { Container } from '@mui/material';
-
 import Carousel from './Carousel';
 
 import {getCommonCardsService, getMainPageMonsterCardsService, getMainPageSpellCardsService, getMainPageTrapCardsService, } from '../../services/cardsServices';
@@ -32,7 +30,7 @@ const Home = () => {
 
   const getMonsterCards = async () => {
     try {
-      const data = await getMainPageMonsterCardsService();
+      const {data} = await getMainPageMonsterCardsService();
       setMonsterCards(data.data);
     } catch (e) {
       console.log(e);
@@ -41,7 +39,7 @@ const Home = () => {
 
   const getSpellCards = async () => {
     try {
-      const data = await getMainPageSpellCardsService();
+      const {data} = await getMainPageSpellCardsService();
       setSpellCards(data.data);
     } catch (e) {
       console.log(e);
@@ -50,7 +48,7 @@ const Home = () => {
 
   const getTrapCards = async () => {
     try {
-      const data = await getMainPageTrapCardsService();
+      const {data} = await getMainPageTrapCardsService();
       setTrapCards(data.data);
     } catch (e) {
       console.log(e);

@@ -13,11 +13,11 @@ const Checkout = ({cart, }) => {
         Checkout
       </h1>
       <Grid container>
-        <Grid item xs={9}>
+        <Grid item xs={12} sm={12} md={9} >
           <ShowItems cart={cart}/>
         </Grid>
 
-        <Grid item xs={3}>
+        <Grid item xs={12} sm={12} md={3}>
           <ShowTotal cart={cart}/>
         </Grid>
       </Grid>

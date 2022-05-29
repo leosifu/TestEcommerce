@@ -1,6 +1,6 @@
 import {useState, useEffect, } from 'react';
 
-import {Button, Grid, IconButton, } from '@mui/material';
+import { Grid, IconButton, } from '@mui/material';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
@@ -43,7 +43,7 @@ const Carousel = ({cards, }) => {
 
   const [showCards, setShowCards] = useState([]);
 
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     setShowCards([...cards]);
@@ -86,7 +86,7 @@ const Carousel = ({cards, }) => {
         {
           showCards.length > 0 ?
           showCards.slice(0, numberOfCards(width)).map(card =>
-            <Grid item xs={cardNumber}>
+            <Grid item xs={cardNumber} key={card.id}>
               <Card card={card} />
             </Grid>
           )

@@ -7,6 +7,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import { useDispatch, } from 'react-redux';
 import { addAnAmountOfItemsToCart, } from '../../../store/slices/cartSlice';
+import { openSnackbar, } from '../../../store/slices/snackBarSlice';
 
 import GeneralButton from '../../../Utils/GeneralButton';
 import StyledTextField from '../../../Utils/StyledTextField';
@@ -28,6 +29,11 @@ const AddCardToCart = ({card, cardPrice, }) => {
       item: card,
       price: cardPrice,
       amount: cardAmount
+    }))
+    dispatch(openSnackbar({
+      open: true,
+      severity: 'success',
+      text: `Se agregó ${card.name}`
     }))
   }
 

@@ -65,7 +65,7 @@ const ShowCart = ({cart, }) => {
             <>
               {
                 items.map((item, i) =>
-                  <>
+                  <div key={`cartItem${item.id}`}>
                     <CartItem
                       item={item}
                     />
@@ -73,7 +73,7 @@ const ShowCart = ({cart, }) => {
                       i === items.length-1 ||
                       <Divider />
                     }
-                  </>
+                  </div>
                 )
               }
               <Card sx={{ position: 'sticky', bottom: 0, width: 280, flexGrow: 1, minHeight: 150, border: 'none', boxShadow: 'none', padding: '0px 20px 5px 0px', }}>

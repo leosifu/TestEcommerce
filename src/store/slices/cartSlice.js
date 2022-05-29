@@ -107,9 +107,10 @@ export const cartSlice = createSlice({
     },
     deleteCompletelyItemFromCart: (state, action) => {
       let itemIndex = state.items.findIndex(item => item.id === action.payload.id);
-      let itemPrice = parseFloat(action.payload.price);
 
       const copyStateItems = [...state.items];
+
+      let itemPrice = parseFloat(parseFloat(action.payload.price) * copyStateItems[itemIndex].quantity).toFixed(2);
 
       copyStateItems.splice(itemIndex, 1);
       state.items = [...copyStateItems];

@@ -31,7 +31,7 @@ const CartItem = ({item, }) => {
     }))
     dispatch(openSnackbar({
       open: true,
-      severity: 'error',
+      severity: 'warning',
       text: `Se eliminó ${item.name}`
     }))
   }
@@ -43,7 +43,7 @@ const CartItem = ({item, }) => {
     }))
     dispatch(openSnackbar({
       open: true,
-      severity: 'error',
+      severity: 'warning',
       text: `Se eliminaron todos los ${item.name}`
     }))
   }

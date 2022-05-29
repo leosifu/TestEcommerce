@@ -20,13 +20,13 @@ const CardDetails = ({card, cardPrice, }) => {
         </Typography>
       </Grid>
 
-      <Typography gutterBottom variant="body1" component="div" style={{ fontWeight: 'bold' }}>
+      <Typography gutterBottom variant="body1" component="div" style={{ fontWeight: 'bold', marginTop: 10 }}>
         Características
       </Typography>
 
       <CardDetailsTable card={card} />
 
-      <Typography gutterBottom variant="body1" component="div" style={{ fontWeight: 'bold' }}>
+      <Typography gutterBottom variant="body1" component="div" style={{ fontWeight: 'bold', marginTop: 15 }}>
         Descripción
       </Typography>
 
